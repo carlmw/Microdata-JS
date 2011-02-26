@@ -13,8 +13,24 @@
 			module("document.getItems");
 
 			test("Document element gets getItems function", function() {
-			  ok( !!document.getItems, "Function not present on document element" );
+				ok( !!document.getItems, "Function not present on document element" );
 			});
+
+			test("document.getItems with no params returns all typed elements", function() {
+				var nodeList = document.getItems();
+				equal (nodeList.length, 3);
+			});
+
+			test("document.getItems with one specified type returns only matching typed elements", function() {
+				var nodeList = document.getItems('http://example.org/foo');
+				equal (nodeList.length, 1);
+			});
+
+			test("document.getItems with multiple specified types returns matching typed elements", function() {
+				var nodeList = document.getItems('http://example.org/foo http://example.org/bar');
+				equal (nodeList.length, 2);
+			});
+
 		});
 	</script>
 </head>
@@ -26,6 +42,14 @@
 	<h2 id="qunit-userAgent"></h2>
 	<ol id="qunit-tests"></ol>
 	<div id="qunit-fixture">test markup, will be hidden</div>
+	
+	<div id="test-data">
+	
+	<div itemscope itemtype="http://example.org/foo" />
+	<div itemscope itemtype="http://example.org/bar" />
+	<div itemscope itemtype="http://example.org/baz" />
+		
+	</div>
 </body>
 
 </html>
