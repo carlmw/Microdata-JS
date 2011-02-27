@@ -1,24 +1,12 @@
 var MicrodataJS = {
 	
 	/**
-	 * Contains all of the DOM elements
-	 */
-	_allDom: null,
-	
-	_getAllDom: function () {
-		if (!MicrodataJS._allDom) {
-		 	MicrodataJS._allDom = document.getElementsByTagName('*');
-		}
-		return MicrodataJS._allDom;
-	},
-	
-	/**
 	 * Gets all of the elements that have an itemType
 	 * param itemTypes - whitespace-separated string of types to match
 	 */
 	getItems:  function (itemTypes) {
 		
-		var all = MicrodataJS._getAllDom();
+		var all = document.getElementsByTagName('*');;
 		var matches = new Array();
 		
 		itemTypes = itemTypes?itemTypes.split(/\s+/):[];
@@ -45,10 +33,9 @@ var MicrodataJS = {
 		// is there a way to cast to NodeList
 		return matches;
 	}
+	
 }
 
 if(!document.getItems) {
-	
 	document.getItems = MicrodataJS.getItems;
-	
 }
