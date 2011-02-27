@@ -14,18 +14,23 @@ var MicrodataJS = {
 		for (var i = all.length-1; i>=0; i--) {
 			
 			var node = all.item(i);
-			var type = node.getAttribute('itemType');
-			
-			if(type) {
+			var scope = node.getAttribute('itemScope');
+
+			if (scope || scope=="") {
+	
+				var type = node.getAttribute('itemType');
+				
 				if (0==itemTypes.length) {
 					matches.push(node);
 				}
+				
 				for (var j=itemTypes.length-1; j>=0; j--)
 				{
 					if(itemTypes[j]==type) {
 						matches.push(node);
 					}
 				}
+				
 			}
 			
 		}
